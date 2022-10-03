@@ -43,7 +43,7 @@ const Options = (props) => {
           ))
         }
       </div>
-      <div className='d-flex flex-column align-items-center'>
+      <div className='w-100 d-flex flex-row flex-sm-column align-items-center justify-content-between'>
         {showResponse && <h2 className='my-2' data-testid='response'>{isCorrect ? 'Correct!' : 'Sorry!'}</h2>}
         {showResponse && <button className='btn btn-dark' onClick={switchToNextQuestion} data-testid='next-btn'>
           {isLastQuestion ? 'Finish!' : 'Next Question'}
