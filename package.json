@@ -29,6 +29,11 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^12.1.5",
     "standard": "^12.0.1"
+  },
+  "standard": {
+    "env": ["jest"]
   }
 }

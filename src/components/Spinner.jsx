@@ -10,7 +10,7 @@ const Overlay = styled.div`
 const Spinner = () => {
   return (
     <Overlay>
-      <div className='spinner-border' />
+      <div className='spinner-border' data-testid='spinner' />
     </Overlay>
   )
 }

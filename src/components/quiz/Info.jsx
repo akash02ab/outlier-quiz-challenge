@@ -10,8 +10,8 @@ const Info = (props) => {
 
   return (
     <div className='d-flex flex-column mb-5'>
-      <h1 className='mb-0 text-dark'>{`Question ${index} of ${totalQuestions}`}</h1>
-      <span className='font-weight-bold text-secondary'>{category}</span>
+      <h1 className='mb-0 text-dark' data-testid='question-index'>{`Question ${index} of ${totalQuestions}`}</h1>
+      <span className='font-weight-bold text-secondary' data-testid='category'>{category}</span>
       <StarRatings
         rating={rating}
         numberOfStars={3}
