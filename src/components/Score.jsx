@@ -23,7 +23,7 @@ const MaxScore = styled.div`
 `
 
 const Score = () => {
-  const { score } = getScore()
+  const score = getScore()
 
   return (
     <div>
