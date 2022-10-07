@@ -117,3 +117,47 @@ describe('Option component', () => {
     }
   })
 })
+
+test('should show "Next Question" as button text along with response', () => {
+  const correctAnswer = 'A'
+  const incorrectAnswers = ['B', 'C', 'D']
+  const options = [correctAnswer, ...incorrectAnswers]
+
+  render(
+    <QuizProvider>
+      <Options
+        correctAnswer={correctAnswer}
+        incorrectAnswers={incorrectAnswers}
+        isLastQuestion={false}
+      />
+    </QuizProvider>
+  )
+
+  const randomInput = Math.floor(Math.random() * options.length)
+  const selectedOption = screen.getByText(options[randomInput])
+  fireEvent.click(selectedOption)
+  const nextBtn = screen.queryByTestId('next-btn')
+  expect(nextBtn).toHaveTextContent('Next Question')
+})
+
+test('should show "Finish!" as button text when it\'s the last question of the quiz', () => {
+  const correctAnswer = 'A'
+  const incorrectAnswers = ['B', 'C', 'D']
+  const options = [correctAnswer, ...incorrectAnswers]
+
+  render(
+    <QuizProvider>
+      <Options
+        correctAnswer={correctAnswer}
+        incorrectAnswers={incorrectAnswers}
+        isLastQuestion
+      />
+    </QuizProvider>
+  )
+
+  const randomInput = Math.floor(Math.random() * options.length)
+  const selectedOption = screen.getByText(options[randomInput])
+  fireEvent.click(selectedOption)
+  const nextBtn = screen.queryByTestId('next-btn')
+  expect(nextBtn).toHaveTextContent('Finish!')
+})

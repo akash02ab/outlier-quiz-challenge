@@ -10,7 +10,12 @@ describe('Info component', () => {
   test('should render with question index and category', () => {
     render(
       <QuizProvider>
-        <Info />
+        <Info
+          category='economics'
+          difficulty='hard'
+          index={2}
+          totalQuestions={5}
+        />
       </QuizProvider>
     )
 
@@ -23,7 +28,10 @@ describe('Info component', () => {
   test('should have index of question to be less than or equal to total questions', () => {
     render(
       <QuizProvider>
-        <Info index={0} />
+        <Info
+          index={0}
+          totalQuestions={5}
+        />
       </QuizProvider>
     )
 
