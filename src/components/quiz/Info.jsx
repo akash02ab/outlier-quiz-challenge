@@ -1,11 +1,9 @@
-import React, { useContext } from 'react'
-import { QuizContext } from '../../context/quiz'
+import React from 'react'
 import { getStarRating } from '../../utils'
 import StarRatings from 'react-star-ratings'
 
 const Info = (props) => {
-  const { index, category, difficulty } = props
-  const { totalQuestions } = useContext(QuizContext)
+  const { category, difficulty, index, totalQuestions } = props
   const rating = getStarRating(difficulty)
 
   return (

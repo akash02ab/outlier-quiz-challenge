@@ -1,4 +1,7 @@
-export const parseQuestions = (questions) => {
+import { useContext } from 'react'
+import { QuizContext } from '../context/quiz'
+
+export const parseQuizData = (questions) => {
   const result = questions.reduce((acc, curr) => {
     const category = decodeURIComponent(curr.category)
     const question = decodeURIComponent(curr.question)
@@ -32,4 +35,13 @@ export const getRandomizeOptions = (options) => {
     options[j] = temp
   }
   return options
+}
+
+export const getScore = () => {
+  const { answered, answeredCorrectly, totalQuestions } = useContext(QuizContext)
+  const currentScore = (Math.round(answeredCorrectly / answered * 100) || 0) + '%'
+  const lowestScore = Math.round((answeredCorrectly / totalQuestions * 100) || 0) + '%'
+  const remainingQuestion = totalQuestions - answered
+  const maxScore = Math.round(((answeredCorrectly + remainingQuestion) / totalQuestions * 100) || 0) + '%'
+  return { currentScore, lowestScore, maxScore }
 }

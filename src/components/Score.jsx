@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
-import { QuizContext } from '../context/quiz'
+import React from 'react'
 import styled from 'styled-components'
+import { getScore } from '../utils'
 
 const ScoreBar = styled.div`
   height: 2rem;
@@ -23,17 +23,13 @@ const MaxScore = styled.div`
 `
 
 const Score = () => {
-  const { answered, answeredCorrectly, totalQuestions } = useContext(QuizContext)
-  const currentScore = (Math.round(answeredCorrectly / answered * 100) || 0) + '%'
-  const lowestScore = Math.round((answeredCorrectly / totalQuestions * 100) || 0) + '%'
-  const remainingQuestion = totalQuestions - answered
-  const maxScore = Math.round(((answeredCorrectly + remainingQuestion) / totalQuestions * 100) || 0) + '%'
+  const { score } = getScore()
 
   return (
     <div>
       <div className='d-flex align-items-center justify-content-between mb-2'>
-        <h6 data-testid='score'>Score: {currentScore}</h6>
-        <h6 data-testid='max-score'>Max Score: {maxScore}</h6>
+        <h6 data-testid='score'>Score: {score.currentScore}</h6>
+        <h6 data-testid='max-score'>Max Score: {score.maxScore}</h6>
       </div>
       <ScoreBar className='progress bg-white position-relative border border-secondary'>
         <LowestScore
@@ -42,7 +38,7 @@ const Score = () => {
           className='progress-bar bg-dark position-absolute'
           role='progressbar'
           name='progressbar'
-          score={lowestScore}
+          score={score.lowestScore}
         />
         <CurrentScore
           aria-valuemin='0'
@@ -50,7 +46,7 @@ const Score = () => {
           className='progress-bar bg-secondary position-absolute'
           role='progressbar'
           name='progressbar'
-          score={currentScore}
+          score={score.currentScore}
         />
         <MaxScore
           aria-valuemin='0'
@@ -58,7 +54,7 @@ const Score = () => {
           className='progress-bar position-absolute'
           role='progressbar'
           name='progressbar'
-          score={maxScore}
+          score={score.maxScore}
         />
       </ScoreBar>
     </div>

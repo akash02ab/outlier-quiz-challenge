@@ -8,6 +8,7 @@ export const QuizProvider = (props) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answered, setAnswered] = useState(0)
   const [answeredCorrectly, setAnsweredCorrectly] = useState(0)
+  const isQuizCompleted = currentIndex === totalQuestions
   return (
     <QuizContext.Provider value={{
       quiz,
@@ -19,7 +20,8 @@ export const QuizProvider = (props) => {
       answered,
       setAnswered,
       answeredCorrectly,
-      setAnsweredCorrectly
+      setAnsweredCorrectly,
+      isQuizCompleted
     }}>
       { props.children }
     </QuizContext.Provider>

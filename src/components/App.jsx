@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { parseQuestions } from '../utils'
+import { parseQuizData } from '../utils'
 import { QuizContext } from '../context/quiz'
 import questions from '../questions.json'
 import styled from 'styled-components'
@@ -21,13 +21,12 @@ const Wrapper = styled.div`
 `
 
 const App = () => {
-  const { quiz, setQuiz, currentIndex, totalQuestions, setTotalQuestions } = useContext(QuizContext)
-  const isQuizCompleted = currentIndex === totalQuestions
+  const { quiz, setQuiz, isQuizCompleted, setTotalQuestions } = useContext(QuizContext)
 
   useEffect(() => {
     if (questions && questions.length) {
       setTotalQuestions(questions.length)
-      setQuiz(parseQuestions(questions))
+      setQuiz(parseQuizData(questions))
     }
   }, [setQuiz, setTotalQuestions])
 

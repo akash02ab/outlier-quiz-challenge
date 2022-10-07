@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { getRandomizeOptions, getStarRating, parseQuestions } from '../utils'
+import { getRandomizeOptions, getStarRating, parseQuizData } from '../utils'
 
 describe('get star rating', () => {
   it('easy should return 1', () => {
@@ -53,12 +53,12 @@ const questions = [
   }
 ]
 
-describe('parse question', () => {
+describe('parse quiz data', () => {
   it('should return parsed (encoded uri format) array of same length', () => {
-    expect(parseQuestions(questions)).toHaveLength(questions.length)
+    expect(parseQuizData(questions)).toHaveLength(questions.length)
   })
   test('should return encoded string correctly', () => {
-    const result = parseQuestions(questions)
+    const result = parseQuizData(questions)
     expect(result[0]['question']).toEqual(decodeURIComponent(questions[0]['question']))
   })
 })

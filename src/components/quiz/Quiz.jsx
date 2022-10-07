@@ -15,6 +15,7 @@ const Quiz = () => {
         index={currentIndex + 1}
         category={problem.category}
         difficulty={problem.difficulty}
+        totalQuestions={totalQuestions}
       />
       <Question
         question={problem.question}
